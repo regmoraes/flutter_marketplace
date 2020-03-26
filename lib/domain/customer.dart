@@ -3,5 +3,5 @@ class Customer {
   String name;
   num balance;
 
-  Customer(this.id, this.name, this.balance);
+  Customer({this.id, this.name, this.balance});
 }

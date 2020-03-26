@@ -5,5 +5,5 @@ class Offer {
   num price;
   Product product;
 
-  Offer(this.id, this.price, this.product);
+  Offer({this.id, this.price, this.product});
 }

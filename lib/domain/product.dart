@@ -4,5 +4,5 @@ class Product {
   String description;
   String imageUrl;
 
-  Product(this.id, this.name, this.description, this.imageUrl);
+  Product({this.id, this.name, this.description, this.imageUrl});
 }
