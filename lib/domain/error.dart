@@ -1,0 +1,1 @@
+enum Error { NETWORK_ERROR, NO_FUNDS, UNKNOWN }
