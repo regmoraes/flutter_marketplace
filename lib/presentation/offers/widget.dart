@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:marketplace/domain/offer.dart';
+import 'package:marketplace/presentation/offer_detail/offer_detail_page.dart';
 
 Widget buildOfferList(BuildContext context, List<Offer> offers) {
   return ListView.builder(
@@ -9,17 +10,26 @@ Widget buildOfferList(BuildContext context, List<Offer> offers) {
 }
 
 Widget _buildOfferItem(BuildContext context, Offer offer) {
-  return Container(
-    color: Colors.teal,
-    child: Column(
-      children: <Widget>[
-        Text("${offer.id}"),
-        Text("${offer.price}"),
-        Text("${offer.product.id}"),
-        Text("${offer.product.name}"),
-        Text("${offer.product.description}"),
-        Image.network(offer.product.imageUrl),
-      ],
+  return GestureDetector(
+    child: Container(
+      color: Colors.teal,
+      child: Column(
+        children: <Widget>[
+          Text("${offer.id}"),
+          Text("${offer.price}"),
+          Text("${offer.product.id}"),
+          Text("${offer.product.name}"),
+          Text("${offer.product.description}"),
+          Image.network(offer.product.imageUrl),
+        ],
+      ),
+    ),
+    onTap: () =>
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => OfferDetailPage(offer: offer),
+          ),
     ),
   );
 }
