@@ -7,6 +7,7 @@ import 'state.dart';
 
 class CustomerOffersBloc
     extends Bloc<CustomerOffersPageEvent, CustomerOffersPageState> {
+
   OffersRepository offersRepository;
 
   CustomerOffersBloc(this.offersRepository);
