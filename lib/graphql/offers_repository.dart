@@ -1,5 +1,5 @@
 import 'package:graphql/client.dart';
-import 'package:marketplace/graphql/mutation/mappers.dart';
+import 'package:marketplace/domain/purchase.dart';
 
 import 'mutation/purchase_offer.dart' as mutations;
 import 'query/customer_offers.dart' as queries;
@@ -22,7 +22,7 @@ class OffersRepository {
     final MutationOptions _options = MutationOptions(
       documentNode: gql(mutations.purchaseOffer),
       variables: <String, String>{
-        PURCHASE_OFFER_ID: offerId,
+        Purchase.OFFER_ID: offerId,
       },
     );
 

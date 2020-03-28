@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marketplace/domain/customer.dart';
 import 'package:marketplace/domain/error.dart';
 import 'package:marketplace/graphql/offers_repository.dart';
 
@@ -7,7 +8,6 @@ import 'state.dart';
 
 class CustomerOffersBloc
     extends Bloc<CustomerOffersPageEvent, CustomerOffersPageState> {
-
   OffersRepository offersRepository;
 
   CustomerOffersBloc(this.offersRepository);
@@ -22,7 +22,9 @@ class CustomerOffersBloc
       final queryResult = await offersRepository.getOffers();
 
       if (!queryResult.hasException) {
-        yield CustomerOffersFetched.createFromQueryResult(queryResult.data);
+        final customer = Customer.fromJson(queryResult.data);
+        yield CustomerOffersFetched(customer);
+
       } else {
         yield FetchError(Error.NETWORK_ERROR);
       }

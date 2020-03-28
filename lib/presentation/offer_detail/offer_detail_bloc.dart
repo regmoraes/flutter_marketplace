@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketplace/domain/offer.dart';
+import 'package:marketplace/domain/purchase.dart';
 import 'package:marketplace/graphql/offers_repository.dart';
 
 import 'event.dart';
@@ -23,11 +24,10 @@ class OfferDetailBloc extends Bloc<OfferDetailEvent, OfferDetailState> {
           event.offerId);
 
       if (!purchaseResult.hasException) {
-        final offerPurchased = OfferPurchase.createOfferPurchaseFromData(
-            purchaseResult.data);
+        final purchase = Purchase.fromJson(purchaseResult.data);
 
-        if (offerPurchased.success != null) {
-          yield offerPurchased;
+        if (purchase.success != null) {
+          yield OfferPurchase(purchase);
         }
       }
     }

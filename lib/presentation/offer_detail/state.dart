@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:marketplace/domain/offer.dart';
-import 'package:marketplace/graphql/mutation/mappers.dart';
-import 'package:marketplace/graphql/query/mappers.dart';
+import 'package:marketplace/domain/purchase.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -18,21 +17,10 @@ class OfferDetail extends OfferDetailState {
 
 class OfferPurchase extends OfferDetailState {
 
-  final bool success;
-  final String errorMessage;
-  final int customerBalance;
+  final Purchase purchase;
 
-  OfferPurchase(this.success, this.errorMessage, this.customerBalance);
-
-  static OfferPurchase createOfferPurchaseFromData(
-      Map<String, dynamic> responseRoot) {
-    return OfferPurchase(
-        responseRoot[PURCHASE][PURCHASE_SUCCESS],
-        responseRoot[PURCHASE][PURCHASE_ERROR_MESSAGE],
-        responseRoot[PURCHASE][CUSTOMER][CUSTOMER_BALANCE]
-    );
-  }
+  OfferPurchase(this.purchase);
 
   @override
-  List<Object> get props => [success, errorMessage, customerBalance];
+  List<Object> get props => [purchase];
 }

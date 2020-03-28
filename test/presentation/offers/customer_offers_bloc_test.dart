@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:marketplace/domain/customer.dart';
 import 'package:marketplace/domain/error.dart';
 import 'package:marketplace/graphql/offers_repository.dart';
 import 'package:marketplace/presentation/offers/customer_offers_bloc.dart';
@@ -63,7 +64,7 @@ void main() {
 
       final expectedEvents = [
         FetchingCustomerOffers(),
-        CustomerOffersFetched.createFromQueryResult(queryResult.data)
+        CustomerOffersFetched(Customer.fromJson(queryResult.data))
       ];
 
       expectLater(_customerOffersBloc, emitsInOrder(expectedEvents));

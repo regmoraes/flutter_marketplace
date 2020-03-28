@@ -18,17 +18,32 @@ class _CustomerOffersPageState extends State<CustomerOffersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: BlocBuilder(
-            bloc: BlocProvider.of<CustomerOffersBloc>(context),
-            builder: (context, state) {
-              if (state is FetchingCustomerOffers)
-                return CircularProgressIndicator();
-              if (state is CustomerOffersFetched)
-                return buildOfferList(context, state.offers);
-              return Text('There was an error!');
-            }));
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: BlocBuilder(
+        bloc: BlocProvider.of<CustomerOffersBloc>(context),
+        builder: (context, state) {
+          if (state is FetchingCustomerOffers)
+            return Container(
+              child: Center(child: CircularProgressIndicator(),),
+            );
+
+          if (state is CustomerOffersFetched)
+            return Container(
+              child: Column(
+                children: <Widget>[
+                  Text("Customer: ${state.customer.name}"),
+                  Expanded(child:
+                  buildOfferList(context, state.customer.offers),
+                  ),
+                ],
+              ),
+            );
+
+          return Text('There was an error!');
+        },
+      ),
+    );
   }
 }

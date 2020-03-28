@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:marketplace/graphql/mutation/mappers.dart';
+import 'package:marketplace/domain/purchase.dart';
 import 'package:marketplace/graphql/offers_repository.dart';
 import 'package:mockito/mockito.dart';
 
@@ -34,7 +34,7 @@ void main() {
           verify(graphQLClientClientMock.mutate(captureAny)).captured.single;
 
       expect(mutateOptions.operationName, 'PurchaseOffer');
-      expect(mutateOptions.variables, { PURCHASE_OFFER_ID: offerId});
+      expect(mutateOptions.variables, { Purchase.OFFER_ID: offerId});
     });
   });
 }

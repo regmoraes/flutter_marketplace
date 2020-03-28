@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:marketplace/domain/customer.dart';
 import 'package:marketplace/domain/error.dart';
-import 'package:marketplace/domain/offer.dart';
-import 'package:marketplace/graphql/query/mappers.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -17,19 +15,11 @@ class FetchingCustomerOffers extends CustomerOffersPageState {
 
 class CustomerOffersFetched extends CustomerOffersPageState {
   final Customer customer;
-  final List<Offer> offers;
 
-  CustomerOffersFetched(this.customer, this.offers);
+  CustomerOffersFetched(this.customer);
 
   @override
-  List<Object> get props => [customer, offers];
-
-  static CustomerOffersFetched createFromQueryResult(
-      Map<String, dynamic> response) {
-    final customer = createCustomerFromData(response[ROOT]);
-    final offers = createOffersFromData(response[ROOT]);
-    return CustomerOffersFetched(customer, offers);
-  }
+  List<Object> get props => [customer];
 }
 
 class FetchError extends CustomerOffersPageState {

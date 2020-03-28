@@ -35,11 +35,12 @@ class OfferDetailPage extends StatelessWidget {
                     return buildOfferDetail(context, state.offer);
 
                   if (state is OfferPurchase) {
-                    if (state.success)
-                      return Text("Great Purchase! Now yo u have ${state
-                          .customerBalance}");
+                    if (state.purchase.success)
+                      return Text(
+                          "Great Purchase! Now yo u have ${state.purchase
+                              .customerBalance}");
                     else
-                      return Text("Oh no! ${state.errorMessage}");
+                      return Text("Oh no! ${state.purchase.errorMessage}");
                   }
                   return Text('There was an error!');
                 },
