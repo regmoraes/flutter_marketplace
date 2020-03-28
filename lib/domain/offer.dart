@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:marketplace/domain/product.dart';
+
+import 'product.dart';
 
 class Offer extends Equatable {
   final String id;
