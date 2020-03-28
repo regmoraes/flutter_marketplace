@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:marketplace/domain/offer.dart';
 import 'package:marketplace/domain/product.dart';
 import 'package:marketplace/graphql/offers_repository.dart';
@@ -24,7 +28,8 @@ void main() {
               id: "1.1",
               name: "Some Product",
               description: "Stubbed product",
-              imageUrl: "some.url"));
+              imageUrl: "some.url")
+      );
 
       _offersRepositoryMock = _MockOffersRepository();
       _offerDetailBloc = OfferDetailBloc(offer, _offersRepositoryMock);
@@ -34,10 +39,50 @@ void main() {
       _offerDetailBloc.close();
     });
 
-    test('When ShowOffer it should emit OfferDetail', () {
-      expectLater(_offerDetailBloc.state, OfferDetail(offer));
-
-      _offerDetailBloc.add(ShowOffer(offer));
+    test('When initiating an OfferDetailBloc it should emit OfferDetail', () {
+      expectLater(_offerDetailBloc.initialState, OfferDetail(offer));
     });
+
+    test(
+        'When emiting PurchaseOffer is sucessful it should emit OfferPurchase with success',
+            () async {
+          final file = File('test_resources/purchase_successful.json');
+          final jsonData = jsonDecode(await file.readAsString());
+          final queryResult = QueryResult(data: jsonData, exception: null);
+
+          when(_offersRepositoryMock.purchaseOffer(offer.id)).thenAnswer((_) {
+            return Future.value(queryResult);
+          });
+
+          final expectedStates = [
+            OfferDetail(offer),
+            OfferPurchase.createOfferPurchaseFromData(jsonData)
+          ];
+
+          expectLater(_offerDetailBloc, emitsInOrder(expectedStates));
+
+          _offerDetailBloc.add(PurchaseOffer(offerId: offer.id));
+        });
+
+    test(
+        'When emiting PurchaseOffer and user has no fund it should emit OfferPurchase with error',
+            () async {
+          final file = File('test_resources/purchase_no_funds.json');
+          final jsonData = jsonDecode(await file.readAsString());
+          final queryResult = QueryResult(data: jsonData, exception: null);
+
+          when(_offersRepositoryMock.purchaseOffer(offer.id)).thenAnswer((_) {
+            return Future.value(queryResult);
+          });
+
+          final expectedStates = [
+            OfferDetail(offer),
+            OfferPurchase.createOfferPurchaseFromData(jsonData)
+          ];
+
+          expectLater(_offerDetailBloc, emitsInOrder(expectedStates));
+
+          _offerDetailBloc.add(PurchaseOffer(offerId: offer.id));
+        });
   });
 }

@@ -16,7 +16,7 @@ void main() {
   OffersRepository _offersRepositoryMock;
   CustomerOffersBloc _customerOffersBloc;
 
-  group('Given an CustomerOffersBloc', () {
+  group('Given a CustomerOffersBloc', () {
     setUp(() {
       _offersRepositoryMock = _MockOffersRepository();
       _customerOffersBloc = CustomerOffersBloc(_offersRepositoryMock);

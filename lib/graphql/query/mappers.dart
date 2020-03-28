@@ -4,6 +4,7 @@ import 'package:marketplace/domain/product.dart';
 
 const ROOT = "viewer";
 
+const CUSTOMER = "customer";
 const CUSTOMER_ID = "id";
 const CUSTOMER_NAME = "name";
 const CUSTOMER_BALANCE = "balance";

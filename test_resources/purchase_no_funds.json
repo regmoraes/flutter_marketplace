@@ -1,0 +1,9 @@
+{
+  "purchase": {
+    "success": false,
+    "errorMessage": "You don't have that much money.",
+    "customer": {
+      "balance": 1000000
+    }
+  }
+}

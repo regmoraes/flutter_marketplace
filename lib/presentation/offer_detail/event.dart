@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:marketplace/domain/offer.dart';
+import 'package:meta/meta.dart';
 
-import '../../domain/offer.dart';
-
+@immutable
 abstract class OfferDetailEvent extends Equatable {}
 
 class ShowOffer extends OfferDetailEvent {
@@ -14,9 +15,9 @@ class ShowOffer extends OfferDetailEvent {
 }
 
 class PurchaseOffer extends OfferDetailEvent {
-  final int offerId;
+  final String offerId;
 
-  PurchaseOffer(this.offerId);
+  PurchaseOffer({this.offerId});
 
   @override
   List<Object> get props => [offerId];
