@@ -1,0 +1,29 @@
+{
+  "viewer": {
+    "id": "cccc3f48-dd2c-43ba-b8de-8945e7ababab",
+    "name": "Jerry Smith",
+    "balance": 1000000,
+    "offers": [
+      {
+        "id": "offer/microverse-battery",
+        "price": 5507,
+        "product": {
+          "id": "product/microverse-battery",
+          "name": "Microverse Battery",
+          "description": "The Microverse Battery contains a miniature universe with a planet inhabited by intelligent life.",
+          "image": "https://vignette.wikia.nocookie.net/rickandmorty/images/8/86/Microverse_Battery.png/revision/latest/scale-to-width-down/310?cb=20160910010946"
+        }
+      },
+      {
+        "id": "offer/mr-meeseeks-box",
+        "price": 999999999,
+        "product": {
+          "id": "product/mr-meeseeks-box",
+          "name": "Mr. Meeseeks Box",
+          "description": "The Mr. Meeseeks Box is a gadget that creates a Mr. Meeseeks for the purpose of completing one given objective.",
+          "image": "https://vignette.wikia.nocookie.net/rickandmorty/images/f/f7/Mr._Meeseeks_Box.png/revision/latest/scale-to-width-down/310?cb=20160909153718"
+        }
+      }
+    ]
+  }
+}
