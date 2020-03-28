@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace/domain/offer.dart';
+import 'package:marketplace/model/offer.dart';
 import 'package:marketplace/presentation/offer_detail/offer_detail_page.dart';
 
 Widget buildOfferList(BuildContext context, List<Offer> offers) {

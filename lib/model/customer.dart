@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:marketplace/domain/offer.dart';
+import 'package:marketplace/model/offer.dart';
 
 class Customer extends Equatable {
   static const VIEWER = "viewer";

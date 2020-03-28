@@ -1,5 +1,5 @@
 import 'package:graphql/client.dart';
-import 'package:marketplace/domain/purchase.dart';
+import 'package:marketplace/model/purchase.dart';
 
 import 'mutation/purchase_offer.dart' as mutations;
 import 'query/customer_offers.dart' as queries;

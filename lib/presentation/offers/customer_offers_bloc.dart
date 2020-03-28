@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marketplace/domain/customer.dart';
-import 'package:marketplace/domain/error.dart';
 import 'package:marketplace/graphql/offers_repository.dart';
+import 'package:marketplace/model/customer.dart';
+import 'package:marketplace/model/error.dart';
 
 import 'event.dart';
 import 'state.dart';

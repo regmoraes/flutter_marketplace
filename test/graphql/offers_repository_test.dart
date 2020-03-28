@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:marketplace/domain/purchase.dart';
 import 'package:marketplace/graphql/offers_repository.dart';
+import 'package:marketplace/model/purchase.dart';
 import 'package:mockito/mockito.dart';
 
 class MockGraphQLClient extends Mock implements GraphQLClient {}

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:marketplace/domain/customer.dart';
-import 'package:marketplace/domain/error.dart';
+import 'package:marketplace/model/customer.dart';
+import 'package:marketplace/model/error.dart';
 import 'package:meta/meta.dart';
 
 @immutable

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:marketplace/domain/customer.dart';
+import 'package:marketplace/model/customer.dart';
 
 class Purchase extends Equatable {
   static const PURCHASE = "purchase";
