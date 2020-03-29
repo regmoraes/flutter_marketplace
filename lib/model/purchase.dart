@@ -5,7 +5,7 @@ class Purchase extends Equatable {
   static const PURCHASE = "purchase";
   static const OFFER_ID = "offerId";
   static const SUCCESS = "success";
-  static const ERROR_MESSAGE = "errorMmessage";
+  static const ERROR_MESSAGE = "errorMessage";
 
   final bool success;
   final String errorMessage;
