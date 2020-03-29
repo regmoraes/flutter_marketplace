@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../model/offer.dart';
+import '../model/offer.dart';
 
 Widget buildOfferDetail(BuildContext context, Offer offer) {
   return Container(

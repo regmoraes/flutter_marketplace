@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/main.dart';
-import 'package:marketplace/presentation/offers/widget.dart';
+import 'package:marketplace/presentation/offers_widgets.dart';
 
 class CustomerOffersPage extends StatefulWidget {
   final String title;

@@ -9,7 +9,7 @@ import 'offers_state.dart';
 class OffersBloc {
   final OffersRepository offersRepository;
   final _offersStreamController = StreamController<OffersState>();
-  final _purchaseStreamController = StreamController<PurchaseState>();
+  final _purchaseStreamController = StreamController<PurchaseState>.broadcast();
   final _customerBalanceStreamController = StreamController<int>();
 
   OffersBloc(this.offersRepository);

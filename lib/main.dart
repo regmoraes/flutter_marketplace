@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marketplace/graphql/client.dart';
 import 'package:marketplace/graphql/offers_repository.dart';
-import 'package:marketplace/presentation/offers/customer_offers_bloc.dart';
-import 'package:marketplace/presentation/offers/customer_offers_page.dart';
-import 'package:marketplace/presentation/offers/event.dart';
+import 'package:marketplace/presentation/offers_bloc.dart';
+import 'package:marketplace/presentation/offers_page.dart';
 
 void main() => runApp(MyApp());
+
+final offersRepo = OffersRepository(client.value);
+final offersBloc = OffersBloc(offersRepo);
 
 class MyApp extends StatelessWidget {
   @override
@@ -16,11 +17,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: BlocProvider(
-          create: (BuildContext context) =>
-          CustomerOffersBloc(OffersRepository(client.value))
-            ..add(FetchCustomerOffers()),
-          child: CustomerOffersPage(title: 'Marketplace'),
-        ));
+      home: CustomerOffersPage(title: 'Marketplace'),
+    );
   }
 }
