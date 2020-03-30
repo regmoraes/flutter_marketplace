@@ -16,8 +16,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.cyan,
-        primaryColorDark: Colors.teal,
-        accentColor: Colors.tealAccent,
         primaryTextTheme: TextTheme(title: TextStyle(color: Colors.white)),
       ),
       home: CustomerOffersPage(title: 'Marketplace', offersBloc: offersBloc),

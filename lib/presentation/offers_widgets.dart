@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:marketplace/main.dart';
 import 'package:marketplace/model/customer.dart';
 import 'package:marketplace/model/offer.dart';
 import 'package:marketplace/presentation/offer_detail_page.dart';
@@ -43,18 +44,9 @@ Widget buildCustomerInfo(Customer customer, Stream<int> customerBalanceStream) {
       final customerBalance =
       snapshot.hasData ? snapshot.data : customer.balance;
 
-      return Container(
-        decoration: BoxDecoration(
-          color: Colors.cyan,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black,
-              blurRadius: 1.0,
-              spreadRadius: 0.0,
-              offset: Offset(0.5, 0.5),
-            ),
-          ],
-        ),
+      return Card(
+        margin: EdgeInsets.all(8),
+        color: Colors.cyan,
         child: ListTile(
           title: Text("Hi, ${customer.name}", style: _customerInfoTextStyle),
           subtitle: Text("\$ $customerBalance", style: _customerInfoTextStyle,
@@ -110,6 +102,7 @@ Widget _buildOfferItem(BuildContext context, Offer offer) {
           Container(
               child: Text(
                 "\$ ${offer.price}",
+                textAlign: TextAlign.center,
                 style: _offerItemTextStyle,
               )),
         ],
@@ -119,7 +112,8 @@ Widget _buildOfferItem(BuildContext context, Offer offer) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (BuildContext context) => OfferDetailPage(offer: offer),
+            builder: (BuildContext context) =>
+                OfferDetailPage(offer: offer, offersBloc: offersBloc),
           ),
     ),
   );
