@@ -6,24 +6,24 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:marketplace/graphql/offers_repository.dart';
 import 'package:marketplace/model/customer.dart';
 import 'package:marketplace/model/purchase.dart';
-import 'package:marketplace/presentation/offers_bloc.dart';
-import 'package:marketplace/presentation/offers_state.dart';
+import 'package:marketplace/presentation/app_bloc.dart';
+import 'package:marketplace/presentation/states.dart';
 import 'package:mockito/mockito.dart';
 
 class _MockOffersRepository extends Mock implements OffersRepository {}
 
 void main() {
   OffersRepository _offersRepositoryMock;
-  OffersBloc _offersBloc;
+  AppBloc _appBloc;
 
-  group('Given a OffersBloc', () {
+  group('Given an AppBloc', () {
     setUp(() {
       _offersRepositoryMock = _MockOffersRepository();
-      _offersBloc = OffersBloc(_offersRepositoryMock);
+      _appBloc = AppBloc(_offersRepositoryMock);
     });
 
     tearDown(() {
-      _offersBloc.close();
+      _appBloc.close();
     });
 
     test('When getOffers is successful it should emit offers state', () async {
@@ -41,9 +41,9 @@ void main() {
         OffersState(customer: expectedCustomer)
       ];
 
-      expectLater(_offersBloc.offersStream, emitsInOrder(expectedEvents));
+      expectLater(_appBloc.offersStream, emitsInOrder(expectedEvents));
 
-      _offersBloc.getCustomerOffers();
+      _appBloc.getCustomerOffers();
     });
 
     test(
@@ -65,11 +65,11 @@ void main() {
       final expectedCustomerBalance = expectedPurchase.customerBalance;
 
       expectLater(
-          _offersBloc.purchaseStream, emitsInOrder(expectedPurchaseStates));
+          _appBloc.purchaseStream, emitsInOrder(expectedPurchaseStates));
       expectLater(
-          _offersBloc.customerBalanceStream, emits(expectedCustomerBalance));
+          _appBloc.customerBalanceStream, emits(expectedCustomerBalance));
 
-      _offersBloc.purchaseOffer("some_id");
+      _appBloc.purchaseOffer("some_id");
     });
 
     test(
@@ -89,9 +89,9 @@ void main() {
         PurchaseState(purchase: expectedPurchase)
       ];
 
-      expectLater(_offersBloc.purchaseStream, emitsInOrder(expectedEvents));
+      expectLater(_appBloc.purchaseStream, emitsInOrder(expectedEvents));
 
-      _offersBloc.purchaseOffer("some_id");
+      _appBloc.purchaseOffer("some_id");
 
       expect(expectedEvents[1].purchase.errorMessage, isNotNull);
     });

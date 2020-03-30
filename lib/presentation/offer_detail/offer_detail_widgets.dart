@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/presentation/offers_state.dart';
-
-import '../model/offer.dart';
+import 'package:marketplace/model/offer.dart';
+import 'package:marketplace/presentation/states.dart';
 
 final _offerDetailTextStyle =
 TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold);

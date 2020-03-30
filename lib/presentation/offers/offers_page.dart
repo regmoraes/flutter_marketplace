@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/presentation/offers_bloc.dart';
-import 'package:marketplace/presentation/offers_widgets.dart';
+import 'package:marketplace/presentation/app_bloc.dart';
+import 'package:marketplace/presentation/offers/offers_widgets.dart';
 
 class CustomerOffersPage extends StatefulWidget {
   final String title;
-  final OffersBloc offersBloc;
+  final AppBloc offersBloc;
 
   CustomerOffersPage({Key key, this.title, this.offersBloc}) : super(key: key);
 

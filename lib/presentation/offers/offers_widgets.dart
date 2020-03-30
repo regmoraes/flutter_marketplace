@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:marketplace/main.dart';
 import 'package:marketplace/model/customer.dart';
 import 'package:marketplace/model/offer.dart';
-import 'package:marketplace/presentation/offer_detail_page.dart';
-import 'package:marketplace/presentation/offers_state.dart';
+import 'package:marketplace/presentation/offer_detail/offer_detail_page.dart';
+import 'package:marketplace/presentation/states.dart';
 
 final _customerInfoTextStyle =
 TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold);

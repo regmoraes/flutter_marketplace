@@ -4,15 +4,15 @@ import 'package:marketplace/graphql/offers_repository.dart';
 import 'package:marketplace/model/customer.dart';
 import 'package:marketplace/model/purchase.dart';
 
-import 'offers_state.dart';
+import 'states.dart';
 
-class OffersBloc {
+class AppBloc {
   final OffersRepository offersRepository;
   final _offersStreamController = StreamController<OffersState>();
   final _purchaseStreamController = StreamController<PurchaseState>.broadcast();
   final _customerBalanceStreamController = StreamController<int>();
 
-  OffersBloc(this.offersRepository);
+  AppBloc(this.offersRepository);
 
   Stream<OffersState> get offersStream => _offersStreamController.stream;
 

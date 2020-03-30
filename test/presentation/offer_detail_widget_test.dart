@@ -14,28 +14,28 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:marketplace/model/customer.dart';
 import 'package:marketplace/model/offer.dart';
 import 'package:marketplace/model/purchase.dart';
-import 'package:marketplace/presentation/offer_detail_page.dart';
-import 'package:marketplace/presentation/offers_bloc.dart';
-import 'package:marketplace/presentation/offers_state.dart';
+import 'package:marketplace/presentation/app_bloc.dart';
+import 'package:marketplace/presentation/offer_detail/offer_detail_page.dart';
+import 'package:marketplace/presentation/states.dart';
 import 'package:mockito/mockito.dart';
 
 import '../image_fetch_mock.dart';
 
-class MockOffersBloc extends Mock implements OffersBloc {}
+class MockAppBloc extends Mock implements AppBloc {}
 
 void main() {
   group(
-    "Given an Offer",
+    "Given an OfferDetail page and an Offer",
     () {
       Offer offerStub;
-      MockOffersBloc mockOffersBloc;
+      MockAppBloc mockAppBloc;
 
       setUp(() async {
         final file = File('test_resources/customer_offers.json');
         final jsonData = jsonDecode(await file.readAsString());
         offerStub = Customer.fromJson(jsonData).offers.first;
 
-        mockOffersBloc = MockOffersBloc();
+        mockAppBloc = MockAppBloc();
 
         HttpOverrides.global = new TestHttpOverrides();
       });
@@ -45,11 +45,11 @@ void main() {
           (WidgetTester tester) async {
         final purchaseStreamController =
             StreamController<PurchaseState>.broadcast();
-        when(mockOffersBloc.purchaseStream)
+        when(mockAppBloc.purchaseStream)
             .thenAnswer((_) => purchaseStreamController.stream);
 
         final widget =
-            OfferDetailPage(offer: offerStub, offersBloc: mockOffersBloc);
+        OfferDetailPage(offer: offerStub, offersBloc: mockAppBloc);
         await tester.pumpWidget(MaterialApp(home: widget));
 
         expect(find.text('${offerStub.product.name}'), findsOneWidget);
@@ -65,12 +65,12 @@ void main() {
           (WidgetTester tester) async {
         final purchaseStreamController =
             StreamController<PurchaseState>.broadcast();
-        when(mockOffersBloc.purchaseStream)
+        when(mockAppBloc.purchaseStream)
             .thenAnswer((_) => purchaseStreamController.stream);
 
         final widget = OfferDetailPage(
           offer: offerStub,
-          offersBloc: mockOffersBloc,
+          offersBloc: mockAppBloc,
         );
 
         await tester.pumpWidget(MaterialApp(home: widget));
@@ -92,12 +92,12 @@ void main() {
           (WidgetTester tester) async {
         final purchaseStreamController =
             StreamController<PurchaseState>.broadcast();
-        when(mockOffersBloc.purchaseStream)
+        when(mockAppBloc.purchaseStream)
             .thenAnswer((_) => purchaseStreamController.stream);
 
         final widget = OfferDetailPage(
           offer: offerStub,
-          offersBloc: mockOffersBloc,
+          offersBloc: mockAppBloc,
         );
 
         await tester.pumpWidget(MaterialApp(home: widget));

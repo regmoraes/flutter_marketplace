@@ -12,8 +12,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:marketplace/model/customer.dart';
-import 'package:marketplace/presentation/offers_state.dart';
-import 'package:marketplace/presentation/offers_widgets.dart';
+import 'package:marketplace/presentation/offers/offers_widgets.dart';
+import 'package:marketplace/presentation/states.dart';
 
 import '../image_fetch_mock.dart';
 
