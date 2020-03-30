@@ -15,7 +15,7 @@ Widget buildOfferDetail(BuildContext context, Offer offer) {
         children: <Widget>[
           Image.network(
             offer.product.imageUrl,
-            fit: BoxFit.fill,
+            fit: BoxFit.contain,
           ),
           Text(
             "${offer.product.description}",
@@ -39,7 +39,7 @@ Widget buildPurchaseButton(Stream<PurchaseState> purchaseStream,
     stream: purchaseStream,
     builder: (context, snapshot) {
       return Container(
-        margin: EdgeInsets.all(64),
+        margin: EdgeInsets.all(32),
         child: SizedBox(
           width: 300,
           height: 50,
