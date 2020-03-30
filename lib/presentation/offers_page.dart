@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace/main.dart';
+import 'package:marketplace/presentation/offers_bloc.dart';
 import 'package:marketplace/presentation/offers_widgets.dart';
 
 class CustomerOffersPage extends StatefulWidget {
   final String title;
+  final OffersBloc offersBloc;
 
-  CustomerOffersPage({Key key, this.title}) : super(key: key);
+  CustomerOffersPage({Key key, this.title, this.offersBloc}) : super(key: key);
 
   @override
   _CustomerOffersPageState createState() => _CustomerOffersPageState();
@@ -15,7 +16,7 @@ class _CustomerOffersPageState extends State<CustomerOffersPage> {
   @override
   void initState() {
     super.initState();
-    offersBloc.getCustomerOffers();
+    widget.offersBloc.getCustomerOffers();
   }
 
   @override
@@ -23,35 +24,12 @@ class _CustomerOffersPageState extends State<CustomerOffersPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        elevation: 4,
       ),
       body: Container(
-        child: Column(
-          children: <Widget>[
-            StreamBuilder(
-              stream: offersBloc.customerBalanceStream,
-              builder: (context, snapshot) {
-                return snapshot.hasData
-                    ? Text("The balance is ${snapshot.data}")
-                    : CircularProgressIndicator();
-              },
-            ),
-            StreamBuilder(
-              stream: offersBloc.offersStream,
-              builder: (context, snapshot) {
-                if (snapshot.hasData && !snapshot.data.fetchingOffers) {
-                  return Expanded(
-                      child: buildOfferList(
-                          context, snapshot.data.customer.offers));
-                } else {
-                  return Container(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                }
-              },
-            ),
-          ],
+        child: buildOffersPage(
+          widget.offersBloc.offersStream,
+          widget.offersBloc.customerBalanceStream,
         ),
       ),
     );
@@ -60,6 +38,6 @@ class _CustomerOffersPageState extends State<CustomerOffersPage> {
   @override
   void dispose() {
     super.dispose();
-    offersBloc.close();
+    widget.offersBloc.close();
   }
 }
