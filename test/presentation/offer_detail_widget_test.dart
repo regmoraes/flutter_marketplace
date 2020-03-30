@@ -82,7 +82,7 @@ void main() {
         await tester.idle();
         await tester.pump(Duration.zero);
 
-        expect(find.text("You purchased your proiduct"), findsOneWidget);
+        expect(find.text("You purchased your product"), findsOneWidget);
 
         purchaseStreamController.close();
       });
