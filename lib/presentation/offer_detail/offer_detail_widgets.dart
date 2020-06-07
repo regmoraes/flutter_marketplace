@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/model/offer.dart';
+import 'package:marketplace/presentation/offer_detail/purchase_button.dart';
 import 'package:marketplace/presentation/states.dart';
 
 final _offerDetailTextStyle =
-TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold);
+    TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold);
 
 Widget buildOfferDetail(BuildContext context, Offer offer) {
   return Expanded(
@@ -38,21 +39,9 @@ Widget buildPurchaseButton(Stream<PurchaseState> purchaseStream,
   return StreamBuilder(
     stream: purchaseStream,
     builder: (context, snapshot) {
-      return Container(
-        margin: EdgeInsets.all(32),
-        child: SizedBox(
-          width: 300,
-          height: 50,
-          child: RaisedButton(
-            color: Colors.cyan,
-            textColor: Colors.white,
-            onPressed: () => onPressed(),
-            child: snapshot.hasData && snapshot.data.purchasing
-                ? CircularProgressIndicator(backgroundColor: Colors.white,)
-                : Text("Purchase"),
-          ),
-        ),
-      );
+      return snapshot.hasData
+          ? PurchaseButton(snapshot.data, null)
+          : PurchaseButton(PurchaseState(), onPressed);
     },
   );
 }
