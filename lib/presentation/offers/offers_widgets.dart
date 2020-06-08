@@ -22,6 +22,7 @@ Widget buildOffersPage(Stream<OffersState> offersStream,
               snapshot.data.customer,
               balanceStream,
             ),
+            // TODO replace for OfferList once Provider is being used
             buildOffersList(
               context,
               snapshot.data.customer.offers,
