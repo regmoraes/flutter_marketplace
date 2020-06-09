@@ -23,7 +23,6 @@ class CustomerInfo extends StatelessWidget {
             final customerBalance =
                 snapshot.hasData ? snapshot.data : customer.balance;
 
-            print("Received on Stream: $snapshot");
             return Text(
               "\$ $customerBalance",
               style: _customerInfoTextStyle,

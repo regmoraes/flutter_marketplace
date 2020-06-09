@@ -13,12 +13,14 @@ class OfferDetail extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Image.network(
-            offer.product.imageUrl,
-            key: Key("${offer.id}"),
-            fit: BoxFit.contain,
+          Expanded(
+            child: Image.network(
+              offer.product.imageUrl,
+              key: Key("${offer.id}"),
+              fit: BoxFit.contain,
+            ),
           ),
           Text(
             "${offer.product.description}",
