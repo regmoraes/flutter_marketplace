@@ -50,10 +50,11 @@ Although it's recommended to have one BLoC per page and to share data between th
 
 In most cases, interfaces are only useful for runtime polymorphism, so if you have an InterfaceImpl class, think twice. Interfaces as an excuse to make testing easier is not solid, as it's possible to Mocks classes and to perform custom injections if correct single responsibility pattern and referential transparency is implemented. In addition, Dart allows classes to be implemented as interface, thus forcing the use of their behavior instead of their implementation.
 
-**Why not use Dependency Injection?**
+**Why not use Dependency Injection?***
 
 Dependency Injection is useful when you have a complex dependency graph with complex object creation and/or when you want to provide scoped dependencies that aren't application wide. Since all the data of the app is shared and consumed by the two pages and this data is application wide, there's no need for a DI Framework/Library.
 
+\* The project uses the [Provider library](https://pub.dev/packages/provider) to make the provisioning of the BLoC class easier, however the dependency resolution for the BLoC is made by hand.
 
 **Why not use Repository + Data Source?**
 
