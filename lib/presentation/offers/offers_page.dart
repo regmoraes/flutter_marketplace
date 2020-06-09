@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/presentation/app_bloc.dart';
 import 'package:marketplace/presentation/offers/offers_widgets.dart';
+import 'package:provider/provider.dart';
 
 class CustomerOffersPage extends StatefulWidget {
   final String title;
-  final AppBloc offersBloc;
 
-  CustomerOffersPage({Key key, this.title, this.offersBloc}) : super(key: key);
+  CustomerOffersPage({Key key, this.title}) : super(key: key);
 
   @override
   _CustomerOffersPageState createState() => _CustomerOffersPageState();
 }
 
 class _CustomerOffersPageState extends State<CustomerOffersPage> {
+  AppBloc appBloc;
+
   @override
   void initState() {
     super.initState();
-    widget.offersBloc.getCustomerOffers();
+    appBloc = Provider.of<AppBloc>(context, listen: false);
+    appBloc.getCustomerOffers();
   }
 
   @override
@@ -28,8 +31,8 @@ class _CustomerOffersPageState extends State<CustomerOffersPage> {
       ),
       body: Container(
         child: buildOffersPage(
-          widget.offersBloc.offersStream,
-          widget.offersBloc.customerBalanceStream,
+          appBloc.offersStream,
+          appBloc.customerBalanceStream,
         ),
       ),
     );
@@ -38,6 +41,6 @@ class _CustomerOffersPageState extends State<CustomerOffersPage> {
   @override
   void dispose() {
     super.dispose();
-    widget.offersBloc.close();
+    appBloc.close();
   }
 }

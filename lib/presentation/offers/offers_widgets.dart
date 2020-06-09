@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:marketplace/main.dart';
-import 'package:marketplace/model/customer.dart';
 import 'package:marketplace/model/offer.dart';
 import 'package:marketplace/presentation/offer_detail/offer_detail_page.dart';
+import 'package:marketplace/presentation/offers/customer_info.dart';
 import 'package:marketplace/presentation/states.dart';
 
-final _customerInfoTextStyle =
-TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold);
-
-Widget buildOffersPage(Stream<OffersState> offersStream,
-    Stream<int> balanceStream,) {
+Widget buildOffersPage(
+  Stream<OffersState> offersStream,
+  Stream<int> balanceStream,
+) {
   return StreamBuilder(
     stream: offersStream,
     builder: (context, snapshot) {
@@ -18,10 +17,7 @@ Widget buildOffersPage(Stream<OffersState> offersStream,
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            buildCustomerInfo(
-              snapshot.data.customer,
-              balanceStream,
-            ),
+            CustomerInfo(snapshot.data.customer),
             // TODO replace for OfferList once Provider is being used
             buildOffersList(
               context,
@@ -34,26 +30,6 @@ Widget buildOffersPage(Stream<OffersState> offersStream,
           child: CircularProgressIndicator(),
         );
       }
-    },
-  );
-}
-
-Widget buildCustomerInfo(Customer customer, Stream<int> customerBalanceStream) {
-  return StreamBuilder(
-    stream: customerBalanceStream,
-    builder: (context, snapshot) {
-      final customerBalance =
-      snapshot.hasData ? snapshot.data : customer.balance;
-
-      return Card(
-        margin: EdgeInsets.all(8),
-        color: Colors.cyan,
-        child: ListTile(
-          title: Text("Hi, ${customer.name}", style: _customerInfoTextStyle),
-          subtitle: Text("\$ $customerBalance", style: _customerInfoTextStyle,
-            textAlign: TextAlign.end,),
-        ),
-      );
     },
   );
 }
@@ -77,8 +53,8 @@ Widget buildOffersList(BuildContext context, List<Offer> offers) {
   );
 }
 
-final _offerItemTextStyle =
-TextStyle(fontSize: 14, color: Colors.blueAccent, fontWeight: FontWeight.bold);
+final _offerItemTextStyle = TextStyle(
+    fontSize: 14, color: Colors.blueAccent, fontWeight: FontWeight.bold);
 
 Widget _buildOfferItem(BuildContext context, Offer offer) {
   return GestureDetector(
@@ -116,6 +92,6 @@ Widget _buildOfferItem(BuildContext context, Offer offer) {
             builder: (BuildContext context) =>
                 OfferDetailPage(offer: offer, offersBloc: offersBloc),
           ),
-    ),
+        ),
   );
 }
