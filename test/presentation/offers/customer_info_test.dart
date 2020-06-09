@@ -8,7 +8,7 @@ import 'package:marketplace/presentation/offers/customer_info.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 
-class MockAppBloc extends Mock implements AppBloc {}
+import '../../test_utils/mock_app_bloc.dart';
 
 void main() {
   group('Given a customer', () {
