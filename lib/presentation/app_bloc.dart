@@ -30,6 +30,18 @@ class AppBloc {
       final customer = Customer.fromJson(queryResult.data);
       _customerBalanceStreamController.add(customer.balance);
       _offersStreamController.add(OffersState(customer: customer));
+    } else {
+      OffersState offersState;
+
+      final graphQLErrors = queryResult.exception?.graphqlErrors;
+
+      if (graphQLErrors.isNotEmpty) {
+        offersState = OffersState(
+            customer: null, errorMessage: graphQLErrors.first.message);
+      } else {
+        offersState = OffersState(errorMessage: "Erro desconhecido");
+      }
+      _offersStreamController.add(offersState);
     }
   }
 
@@ -42,6 +54,21 @@ class AppBloc {
       final purchase = Purchase.fromJson(queryResult.data);
       _customerBalanceStreamController.add(purchase.customerBalance);
       _purchaseStreamController.add(PurchaseState(purchase: purchase));
+    } else {
+      PurchaseState purchaseState;
+
+      final graphQLErrors = queryResult.exception?.graphqlErrors;
+
+      if (graphQLErrors.isNotEmpty) {
+        final purchaseError =
+            Purchase(success: false, errorMessage: graphQLErrors.first.message);
+        purchaseState = PurchaseState(purchase: purchaseError);
+      } else {
+        final purchaseError =
+            Purchase(success: false, errorMessage: "Erro desconhecido");
+        purchaseState = PurchaseState(purchase: purchaseError);
+      }
+      _purchaseStreamController.add(purchaseState);
     }
   }
 

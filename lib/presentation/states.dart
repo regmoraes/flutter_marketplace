@@ -1,17 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:marketplace/model/customer.dart';
-import 'package:marketplace/model/error.dart';
 import 'package:marketplace/model/purchase.dart';
 
 class OffersState extends Equatable {
   final bool fetchingOffers;
   final Customer customer;
-  final Error error;
+  final String errorMessage;
 
-  OffersState({this.fetchingOffers = false, this.customer, this.error});
+  OffersState({this.fetchingOffers = false, this.customer, this.errorMessage});
 
   @override
-  List<Object> get props => [fetchingOffers, customer, error];
+  List<Object> get props => [fetchingOffers, customer, errorMessage];
 }
 
 class PurchaseState extends Equatable {
