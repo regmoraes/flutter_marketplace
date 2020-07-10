@@ -2,6 +2,10 @@
 
 A marketplace app where users can spend their NuConta balance on awesome products.
 
+<p float="left">
+<img width="40%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/4440882/87166175-91364e80-c2a1-11ea-905e-897af730c137.gif" />
+<img width="40%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/4440882/87166152-8aa7d700-c2a1-11ea-8112-6c5b4e10c094.gif" />
+  
 ## Use Cases
 
 - The user should be able to see their balance and all the offers available to them ✅
@@ -11,10 +15,6 @@ A marketplace app where users can spend their NuConta balance on awesome product
 - A purchase can fail if an offer is expired, or if the balance available is insufficient. In any case, an error message should be displayed ✅
 
 ## Running
-
-| ⚠️   Warning                                                                                                                 |
-| :---------------------------------------------------------------------------|
-| You need to provide your GraphQL `$API_BEARER_TOKEN` in the `/graphql/client.dart`. |
 
 The project was made with Flutter + Dart, and can run on iOS and Android. To run the project just execute command below on terminal with a connected device or run directly from an IDE.
 > flutter run
@@ -50,11 +50,10 @@ Although it's recommended to have one BLoC per page and to share data between th
 
 In most cases, interfaces are only useful for runtime polymorphism, so if you have an InterfaceImpl class, think twice. Interfaces as an excuse to make testing easier is not solid, as it's possible to Mocks classes and to perform custom injections if correct single responsibility pattern and referential transparency is implemented. In addition, Dart allows classes to be implemented as interface, thus forcing the use of their behavior instead of their implementation.
 
-**Why not use Dependency Injection?***
+**Why not use Dependency Injection?**
 
 Dependency Injection is useful when you have a complex dependency graph with complex object creation and/or when you want to provide scoped dependencies that aren't application wide. Since all the data of the app is shared and consumed by the two pages and this data is application wide, there's no need for a DI Framework/Library.
 
-\* The project uses the [Provider library](https://pub.dev/packages/provider) to make the provisioning of the BLoC class easier, however the dependency resolution for the BLoC is made by hand.
 
 **Why not use Repository + Data Source?**
 
